@@ -8,7 +8,6 @@ import java.util.Queue;
  * 
  *         Time Complexity: O(N * M) Auxiliary Space: O(N * M)
  */
-
 public class BreadthFirstSearch2DArray {
 
 	static class Pair {
