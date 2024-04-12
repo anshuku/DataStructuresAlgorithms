@@ -8,7 +8,7 @@ import java.util.Set;
  * 
  * The time Complexity of the implementation is O(V^2). If the input graph is represented using adjacency list, 
  * it can be reduced to O(E * log V) with the help of a binary heap.
- * Dijkstra’s algorithm doesn’t work for graphs with negative weight cycles.
+ * Dijkstra’s algorithm doesn’t work for graphs with negative weight cycles and negative edges.
  */
 
 public class GraphDijkstraSingleSourceShortestPathAdjMatrix {
