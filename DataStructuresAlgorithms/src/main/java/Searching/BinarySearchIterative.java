@@ -11,9 +11,7 @@ public class BinarySearchIterative {//Time complexity is log(n) via tree tracing
 		
 		int index = BinarySearch(arr, arr.length, key);
 		System.out.printf("index for key %d is %d", key, index);
-		
 	}
-	
 	
 	public static int BinarySearch(int arr[], int n, int key) {
 		int index = -1;
@@ -29,7 +27,6 @@ public class BinarySearchIterative {//Time complexity is log(n) via tree tracing
 				low = mid + 1;
 			}
 		}
-		
 		return index;
 	}
 

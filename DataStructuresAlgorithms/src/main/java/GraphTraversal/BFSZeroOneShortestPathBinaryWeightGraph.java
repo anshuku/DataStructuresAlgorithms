@@ -100,7 +100,7 @@ public class BFSZeroOneShortestPathBinaryWeightGraph {
 		}
 		System.out.println("Vertex \t\t Min distance");
 		for (int i = 0; i < V; i++) {
-			System.out.println(i + " \t\t x" + dist[i]);
+			System.out.println(i + " \t\t " + dist[i]);
 		}
 
 	}
