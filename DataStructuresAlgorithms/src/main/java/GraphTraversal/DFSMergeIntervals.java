@@ -12,7 +12,8 @@ import java.util.Stack;
 /**
  * @author anshukumar
  * 
- *         Create Graph, Connected Components of graph and Merge Intervals
+ *         Create Graph, Connected Components of graph and Merge Intervals.
+ *         Connected components are formed with help of Depth First Search.
  * 
  */
 public class DFSMergeIntervals {
