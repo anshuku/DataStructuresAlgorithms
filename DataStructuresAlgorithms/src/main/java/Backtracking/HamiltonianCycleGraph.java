@@ -47,7 +47,7 @@ public class HamiltonianCycleGraph {
 				for (int i = 0; i <= n; i++) {
 					System.out.print((x[i] + 1) + " ");
 				}
-				System.out.print("1");
+				System.out.print("1");//the cycle has 1 as end
 				System.out.println();
 				count++;
 
@@ -62,7 +62,7 @@ public class HamiltonianCycleGraph {
 
 		do {
 			x[k] = (x[k] + 1) % (n + 1); //gets next vertex value
-			if (x[k] == 0)
+			if (x[k] == 0)//if the last vertex has crossed
 				return;
 			if (g[x[k - 1]][x[k]] != 0) { //check if there is an edge from previous vertex to current vertex in graph
 				int j = 1;

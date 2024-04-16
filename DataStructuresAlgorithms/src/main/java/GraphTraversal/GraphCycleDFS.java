@@ -9,7 +9,7 @@ import java.util.Stack;
  * 
  *         A cycle can be detected in a directed graph via Depth First Search Traversal.
  *         There is a cycle in a graph only if there is a back edge - node
- *         points to one of ancestors.
+ *         points to one of the ancestors.
  *         
  *         If a node is already present in recursion stack, then there is a cycle in graph.
  *         

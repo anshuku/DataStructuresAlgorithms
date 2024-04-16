@@ -16,11 +16,11 @@ import java.util.Queue;
  *         indicates a presence of at least 1 cycle. If we're unable to get all
  *         the vertices in topological sorting, then there must be at least one
  *         cycle.
- *         
+ * 
  *         The below approach uses BFS via queue to reduce indegree.
- *         
- *         Time complexity: O(V+E)
- *         Space complexity: O(V), To store the visited and recursion stack O(V) space is needed.
+ * 
+ *         Time complexity: O(V+E) Space complexity: O(V), To store the visited
+ *         and recursion stack O(V) space is needed.
  */
 public class GraphCycleBFSKahnTopologicalSorting {
 
@@ -84,9 +84,9 @@ public class GraphCycleBFSKahnTopologicalSorting {
 		while (!queue.isEmpty()) {
 			int u = queue.poll();
 			visited++;
-			
+
 			System.out.println("Current in degree array " + Arrays.toString(inDegree));
-			
+
 			// reduce in-degree of adjacent vertices
 			for (int v : adjList.get(u)) {
 				inDegree[v]--;
