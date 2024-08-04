@@ -5,7 +5,8 @@ package Sorting;
  * @author anshukumar
  *
  * HeapSort uses Heap data structure sort an array. Below is Max Heap creation and deletion
- * It's time complexity is O(n*log(n)) always and has log(n) space complexity due to recursive call stack. It can be O(1) space complexity for iterative implementation.
+ * It's time complexity is O(n*log(n)) always and has log(n) space complexity due to recursive call stack. 
+ * It can have O(1) space complexity for iterative implementation.
  * It is in-place and unstable, but can be made stable.
  * It's 2-3 times slower than well implemented QuickSort due to lack of locality of reference.
  * It's not a divide and conquer algorithm but a recursive one.
@@ -28,7 +29,8 @@ public class HeapSort {
 		for(int i = N/2-1; i>=0; i--) {
 			heapify(arr, N, i);
 		}
-		//Remove root element from top and put it at end of the array
+		//Remove root element from top and put it at end of the array by replacing the value at end
+		//and recursively heapify at new root
 		for(int i = N-1; i>0; i--) {
 			int temp = arr[0];
 			arr[0] = arr[i];
@@ -47,7 +49,8 @@ public class HeapSort {
 		if(right < N && arr[right] > arr[largest]) {
 			largest = right;
 		}
-		//If the root element is not the largest then swap with the largest child node's value and recursively heapify at largest index.
+		//If the root element is not the largest then swap with the largest child node's value 
+		//and recursively heapify at largest index.
 		if(largest != i) {
 			int temp = arr[largest];
 			arr[largest] = arr[i];
