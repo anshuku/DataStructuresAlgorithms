@@ -3,7 +3,7 @@ package DivideAndConquer.Sorting;
 /**
  * @author anshukumar
  *
- * Merge Sort - stable, large datasets, external sorting(data too large for memory),  adaptive, 
+ * Merge Sort - stable, large datasets, external sorting(data too large for memory), adaptive, 
  * parallelizable (for multiple processors and threads), not in place(additional memory), 
  * not good for small datasets(slow), additional space for storing merged sub-arrays.
  * 

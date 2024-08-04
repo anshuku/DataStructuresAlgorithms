@@ -7,6 +7,7 @@ package DivideAndConquer.Sorting;
  * It follows DnC and is recursive in nature.
  * It works on finding an element in a sorted position called Pivot position via Partitioning algorithm.
  * All elements on LHS are shorter and RHS are greater than Pivot element.
+ * It's an in place(in-situ) algorithm but not stable(relative order of equal items may not be preserved)
  * Best case time is O(n*logn) but the element should be at median which is hard to achieve.
  * Worst case time is O(n^2) in case the pivot is taken from start of array.
  * To fix worst case take pivot at the middle(fixes already sorted sorted array) or at random position, but there can be scenario where worst case arises.
