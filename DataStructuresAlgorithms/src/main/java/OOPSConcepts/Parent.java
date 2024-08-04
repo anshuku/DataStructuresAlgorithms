@@ -18,6 +18,7 @@ public class Parent {
 	}
 
 	// The static method of parent cannot be overridden in child
+	// for both static(no error) and non static(Compile Time error) method of child
 	public static int incrementVal(int i, int j) {
 		System.out.println("The parent static method - incrementVal");
 		return i + j;

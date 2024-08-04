@@ -18,6 +18,7 @@ public class Child extends Parent {
 	}
 
 	// static method can be overloaded with non static method
+	// no compile time error even though parent already have the same method
 	public static int incrementVal(int i, int j) {
 		System.out.println("The child static method - incrementVal");
 		return i + 1;
@@ -26,7 +27,7 @@ public class Child extends Parent {
 	// instance method cannot override the static method from parent - compile time
 	// error
 //	public int incrementVal(int i, int j) {
-//		System.out.println("The child static method - incrementVal");
+//		System.out.println("The child non static method - incrementVal");
 //		return i + 1;
 //	}
 
