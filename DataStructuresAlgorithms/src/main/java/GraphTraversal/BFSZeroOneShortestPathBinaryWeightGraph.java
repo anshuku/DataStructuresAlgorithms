@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 
-
 /**
  * @author anshukumar
  * 
- *         The Graph is having Binary Weight of 0 or 1. So, BFS can be applied to traverse it.
- *         Since only the edges from a given vertex are checked, the Time Complexity of the BFS approach is O(V+E).
- *         This problem can also be solved by Dijkstra but the time complexity will be O(E + V Log V).
+ *         The Graph is having Binary Weight of 0 or 1. So, BFS can be applied
+ *         to traverse it. Since only the edges from a given vertex are checked,
+ *         the Time Complexity of the BFS approach is O(V+E). This problem can
+ *         also be solved by Dijkstra but the time complexity will be O(E + V
+ *         Log V).
  */
 public class BFSZeroOneShortestPathBinaryWeightGraph {
 
@@ -84,7 +85,7 @@ public class BFSZeroOneShortestPathBinaryWeightGraph {
 
 			int u = deque.removeFirst();
 
-			//iterate till the size of the ArrayList at an index/number of edges from a vertex
+			// iterate till the size of the ArrayList at a given index/number of edges from the vertex
 			for (int v = 0; v < adjList[u].size(); v++) {
 
 				if (dist[u] + adjList[u].get(v).weight < dist[adjList[u].get(v).to]) {
