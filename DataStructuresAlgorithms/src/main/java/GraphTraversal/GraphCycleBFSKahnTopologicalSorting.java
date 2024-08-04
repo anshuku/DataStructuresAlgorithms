@@ -31,7 +31,7 @@ public class GraphCycleBFSKahnTopologicalSorting {
 		List<List<Integer>> adjList;
 
 		Graph(int vertices) {
-			this.vertices = this.vertices;
+			this.vertices = vertices;
 			adjList = new ArrayList<>();
 
 			for (int v = 0; v < V; v++) {

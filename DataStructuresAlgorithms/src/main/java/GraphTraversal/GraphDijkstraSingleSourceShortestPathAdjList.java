@@ -9,11 +9,11 @@ import java.util.PriorityQueue;
  * @author anshukumar
  * 
  *         The graph is represented using adjacency list, the time complexity is
- *         reduced to O(E * log V) with the help of a binary min heap/priority queue. 
- *         The Priority queue helps to perform BFS.
- *         
- *         Dijkstra’s algorithm doesn’t work for graphs with negative
- *         weight cycles and negative edges.
+ *         reduced to O(E * log V) with the help of a binary min heap/priority
+ *         queue. The Priority queue helps to perform BFS.
+ * 
+ *         Dijkstra’s algorithm doesn’t work for graphs with negative weight
+ *         cycles and negative edges.
  */
 public class GraphDijkstraSingleSourceShortestPathAdjList {
 
@@ -119,8 +119,9 @@ public class GraphDijkstraSingleSourceShortestPathAdjList {
 
 //		PriorityQueue<AdjListNode> pq = new PriorityQueue<>(V, Comparator.comparingInt(o -> o.getWeight()));
 
+//		Min Heap
 		PriorityQueue<AdjListNode> pq = new PriorityQueue<>((a, b) -> a.getWeight() - b.getWeight());
-		
+
 		pq.add(new AdjListNode(source, 0));
 
 		dist[source] = 0;
@@ -129,6 +130,7 @@ public class GraphDijkstraSingleSourceShortestPathAdjList {
 
 			AdjListNode u = pq.poll();
 
+			// Min Heap always returns the smallest weight/distance
 			for (AdjListNode v : adjList.get(u.getVertex())) {
 
 				if (dist[u.vertex] + v.weight < dist[v.vertex]) {
