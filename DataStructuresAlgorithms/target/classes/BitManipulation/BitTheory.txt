@@ -1,0 +1,51 @@
+In Java, byte is a data type. In java it's 8 bit signed byte which has a range from -128 to 127.
+There is no unsigned byte in java which ranges from 0 to 255. To get unsigned byte, cast it to int and mask with 0xff
+This gives the last 8 bits and prevents sign extension.
+
+byte b = -1;
+int num = b & 0xff;
+
+There is a need of 2's complement to represent signed numbers in java. In 2's complement, leftmost bit represents the sign.
+0 is positive and 1 is negative. The rest bits denotes the values from -128 to 127.
+So, 8-bit byte only have 7 bits to store the value. Extra values range from 128 to 255 are unable to be fit into a single byte.
+We can cast it to 32-bit unsigned integer for more spaces.
+Byte | Unsigned Byte
+1		1
+2		2
+127		127
+-128	128
+-127	129
+-2		254
+-1		255
+
+1 in 8-bit binary  = 0000 0001
+2's complement -> invert the bits and add 1
+1111 1110 + 1 -> 1111 1111 -> Here leftmost 1 represents the negative sign while 0 represents the positive sign.
+2^7 + 2^6 +.. +2^0 = 255
+
+When we convert or cast a byte to an int, it increases the bits from 8-bit to 32-bits.
+The sign extension will apply and fill in the values of the increased bits.
+8-bit representation 1111 1111(-1)
+
+Converting byte to an int -> ???? ???? | ???? ???? | ???? ???? | 1111 1111  
+
+32 bit representation sign extension
+1111 1111 | 1111 1111 | 1111 1111 | 1111 1111
+
+we get the last 8 bits by performing the & 0xff (bitwise &)
+
+  1111 1111 | 1111 1111 | 1111 1111 | 1111 1111 (int -1)
+& 0000 0000 | 0000 0000 | 0000 0000 | 1111 1111 (0xff)
+  0000 0000 | 0000 0000 | 0000 0000 | 1111 1111 (last 8 bits)
+  
+convert the binary to decimal = 2^7+2^6+..+2^0 = 255
+
+Java 8 has static method of Byte class
+static int toUnsignedInt(byte b)
+
+In the conversion the higher order 24 bits of int are 0 and lower order 8 bits are equal to the bits of the byte argumenet
+
+byte b = (byte) -8;                              //-8 (signed) and 248(unsigned)  
+System.out.println(b);                           //-8  
+System.out.println(Byte.toUnsignedInt(b));       //248  
+
