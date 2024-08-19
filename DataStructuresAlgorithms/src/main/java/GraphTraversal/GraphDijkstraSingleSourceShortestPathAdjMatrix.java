@@ -39,7 +39,7 @@ public class GraphDijkstraSingleSourceShortestPathAdjMatrix {
 		// dist array stores all the shortest distance of vertices from source vertex
 		int[] dist = new int[V];
 
-		// Initialize all distance of vertex as infinite and stpSet visited as false
+		// Initialize all distance of vertex as infinite and sptSet visited as false
 		for (int i = 0; i < V; i++) {
 			sptSet[i] = false;// not needed as default is false
 			dist[i] = Integer.MAX_VALUE;
@@ -52,7 +52,7 @@ public class GraphDijkstraSingleSourceShortestPathAdjMatrix {
 			int u = findMinDistanceUnvisitedVertex(dist, sptSet);
 			sptSet[u] = true;
 			
-			//Update the distance of adjacent vertex of picked vertex
+			//Update the distance of adjacent vertices of picked vertex
 			for(int v = 0; v<V; v++) {
 				if(!sptSet[v] && graph[u][v] != 0 && 
 						(dist[u] != Integer.MAX_VALUE) &&
