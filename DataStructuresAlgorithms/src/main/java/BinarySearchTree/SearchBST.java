@@ -11,6 +11,16 @@ package BinarySearchTree;
  * Consider BST as a sorted array.
  * 
  * A BST may not be a Full(2^n - 1 nodes where n is level) or Complete Binary tree(like Heap).
+ * 
+ * Applications - 
+ * - Self balancing binary search trees - AVL trees and Red Black trees maintain height at O(log n) so that all operations
+ * are maintained at O(log n). TreeSet and TreeMap are library implementations of self balancing implementations of BST.
+ * - Sorted stream of data can be maintained where insert, search, delete and traversal can be performed in sorted order.
+ * - Doubly ended Priority Queues - With self balancing BSTs, one can extract both maximum and minimum in O(log n) time,
+ * when we need both operations supported efficiently, we use self balancing BSTs.
+ * 
+ * For search, insert or delete operations, hashing is preferred. But, it we want to maintain sorted order alongwith this
+ * then BSTs are preferred.
  */
 public class SearchBST {
 
@@ -91,14 +101,5 @@ public class SearchBST {
 			return searchRecursive(node.right, key);
 		}
 	}
-	
-
-
-	// Creating the following BST
-	//      10
-    //     /  \
-    //    5    15
-    //         / \
-    //        12 18
 
 }

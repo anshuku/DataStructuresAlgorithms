@@ -30,16 +30,15 @@ public class DeletionBST {
 	}
 
 	public static void main(String[] args) {
-		
 
 		// Creating the following BST
-		//      10
-	    //     /  \
-	    //    5    15
-	    //     \   / \
-	    //      8 12 18
-		//     / \
-		//    6   9
+		// 10
+		// / \
+		// 5 15
+		// \ / \
+		// 8 12 18
+		// / \
+		// 6 9
 
 		Node root = new Node(10);
 		root.left = new Node(5);
@@ -55,21 +54,21 @@ public class DeletionBST {
 
 		inOrder(root);
 		System.out.println();
-		
+
 		int key = 8;
 
 		root = deleteRecursive(root, key);
 
 		inOrder(root);
 		System.out.println();
-		
+
 		key = 10;
 
 		root = deleteIterative(root, key);
 
 		inOrder(root);
 		System.out.println();
-		
+
 		key = 15;
 
 		root = deleteRecursiveOptimized(root, key);
@@ -121,7 +120,7 @@ public class DeletionBST {
 		}
 		// Delete the inorder successor
 		if (parent.left == succ) {
-			parent.left = succ.right;
+			parent.left = succ.right; // successor's right is important
 		} else {
 			parent.right = succ.right;
 		}
@@ -189,7 +188,7 @@ public class DeletionBST {
 			}
 			// If node to be deleted is not immediate parent
 			if (p != null) {
-				p.left = succ.right;
+				p.left = succ.right;// Right is important
 			} else { // If node to be deleted is the immediate parent
 				curr.right = succ.right;
 			}
