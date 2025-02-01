@@ -38,22 +38,23 @@ public class TrieNode {
 		System.out.println("The values ant is present " + isPresent5);
 	}
 
+	// Even thought the trie is pointed to it's internal value
+	// While returning the trie, the parent trie is maintained.
 	// Time complexity - O(n) or O(number of words*max(word_sizes))
 	// Space complexity - O(n) or O(number of words*max(word_sizes))
-	private static boolean search(TrieNode trie, String value) {
-		// Initialize the current pointer with root node
-		TrieNode curr = trie;
-		for (char c : value.toCharArray()) {
-			// Check is a node exists for current character in the trie
-			// If it's not then return false
-			if (curr.trie[c - 'a'] == null) {
-				return false;
+	private static void insertion(TrieNode trie, String word) {
+		int n = word.length();
+		for (int i = 0; i < n; i++) {
+			int index = word.charAt(i) - 'a';
+			if (trie.trie[index] == null) {
+				trie.trie[index] = new TrieNode();
+				trie = trie.trie[index];
+			} else {
+				trie = trie.trie[index];
 			}
-			// Move the pointer to the already existing node for the character.
-			curr = curr.trie[c - 'a'];
 		}
-		// Return true if the word exists and is marked as ending.
-		return curr.checkEnd;
+		trie.checkEnd = true;
+
 	}
 
 	// Time complexity - O(n) or O(number of words*max(word_sizes))
@@ -82,23 +83,22 @@ public class TrieNode {
 
 	}
 
-	// Even thought the trie is pointed to it's internal value
-	// While returning the trie, the parent trie is maintained.
 	// Time complexity - O(n) or O(number of words*max(word_sizes))
 	// Space complexity - O(n) or O(number of words*max(word_sizes))
-	private static void insertion(TrieNode trie, String word) {
-		int n = word.length();
-		for (int i = 0; i < n; i++) {
-			int index = word.charAt(i) - 'a';
-			if (trie.trie[index] == null) {
-				trie.trie[index] = new TrieNode();
-				trie = trie.trie[index];
-			} else {
-				trie = trie.trie[index];
+	private static boolean search(TrieNode trie, String value) {
+		// Initialize the current pointer with root node
+		TrieNode curr = trie;
+		for (char c : value.toCharArray()) {
+			// Check is a node exists for current character in the trie
+			// If it's not then return false
+			if (curr.trie[c - 'a'] == null) {
+				return false;
 			}
+			// Move the pointer to the already existing node for the character.
+			curr = curr.trie[c - 'a'];
 		}
-		trie.checkEnd = true;
-
+		// Return true if the word exists and is marked as ending.
+		return curr.checkEnd;
 	}
 
 }

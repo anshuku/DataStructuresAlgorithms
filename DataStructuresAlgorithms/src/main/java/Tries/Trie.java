@@ -43,15 +43,16 @@ public class Trie {
 		System.out.println("The word atn is a prefix present in trie: " + startsWith6);
 	}
 
-	private boolean startsWith(String word) {
+	// Cannot use this/super keyword in static context
+	private void insert(String word) {
 		Trie trie = this;
 		for (char c : word.toCharArray()) {
 			if (trie.trie[c - 'a'] == null) {
-				return false;
+				trie.trie[c - 'a'] = new Trie();
 			}
 			trie = trie.trie[c - 'a'];
 		}
-		return true;
+		trie.checkEnd = true;
 	}
 
 	private boolean search(String word) {
@@ -65,16 +66,14 @@ public class Trie {
 		return trie.checkEnd;
 	}
 
-	// Cannot use this/super keyword in static context
-	private void insert(String word) {
+	private boolean startsWith(String word) {
 		Trie trie = this;
 		for (char c : word.toCharArray()) {
 			if (trie.trie[c - 'a'] == null) {
-				trie.trie[c - 'a'] = new Trie();
+				return false;
 			}
 			trie = trie.trie[c - 'a'];
 		}
-		trie.checkEnd = true;
+		return true;
 	}
-
 }
