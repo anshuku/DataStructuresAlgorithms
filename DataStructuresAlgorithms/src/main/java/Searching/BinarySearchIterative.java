@@ -63,6 +63,8 @@ public class BinarySearchIterative {
 //			}
 //		}
 //		return start + 1;
+
+		// return start
 //		int end = arr.length;
 //		while (start < end) {
 //			int mid = start + (end - start) / 2;
