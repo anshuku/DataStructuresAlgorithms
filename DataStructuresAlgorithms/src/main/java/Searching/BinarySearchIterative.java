@@ -80,6 +80,13 @@ public class BinarySearchIterative {
 	// Here, left is the insert position and left - 1 is the largest element which
 	// is not larger than the key.
 	// check for nums[left/left - 1] == target for confirmation
+	// Here, answer would be in range [left, right] at any point. All the indices
+	// smaller than left would contain values smaller than target and all values at
+	// indices greater than right would be greater than target until left <= right
+	// Once left > right, left denotes the index of the smallest value which is just
+	// greater than the target. This is because all values at indices greater than
+	// right would be greater than target and value immediately next to index right
+	// is at left(right + 1) after completion of Binary search algorithm.
 	private static int binarySearchUpper(int[] arr, int length, int key) {
 		int start = 0;
 		int end = arr.length - 1;
