@@ -26,17 +26,85 @@ public class BinarySearchIterative {
 
 //		key = 3;// 0
 //		key = 2;// 0
-		key = 4;// 0
+		key = 4;// 2
 //		key = 62;// 0
 //		key = 63;// 0
 		int indexLower = binarySearchLower(arr, arr.length, key);
 		System.out.printf("Lower BS: index for key %d is %d", key, indexLower);
 		System.out.println();
 
+		int indexInsertPosition = binarySearchInsertPosition(arr, arr.length, key);
+		System.out.printf("Insert Position: index for key %d is %d", key, indexInsertPosition);
+		System.out.println();
+
+		// Arrays.binarySearch() gives the index of the search key if the element exists
+		// otherwise it returns -(index) which starts from -1
+		// use if (index > 0) logic
 		int indexArrays = Arrays.binarySearch(arr, 62);
 		System.out.printf("Arrays: index for key %d is %d", key, indexArrays);
 	}
 
+	// Find the exact value
+	public static int binarySearchExact(int arr[], int n, int key) {
+		int index = -1;
+		int low = 0, high = n - 1;
+		while (low <= high) {
+			// Pivot point
+			int mid = low + (high - low) / 2;
+			if (key == arr[mid]) {
+				return mid;
+			} else if (key < arr[mid]) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return index;
+	}
+
+	// Finding the upper bound - rightmost position
+	// Here if arr[mid] < target then insert position is on mid's right
+	// so we discard the left half of mid and also mid by start = mid + 1
+	// Also, if arr[mid] == target still the insert position is on mid's right
+	// so we discard the left half of mid by start = mid + 1
+	// Here, left is the insert position and left - 1 is the largest element which
+	// is not larger than the key.
+	// check for nums[left/left - 1] == target for confirmation
+	private static int binarySearchUpper(int[] arr, int length, int key) {
+		int start = 0;
+		int end = arr.length - 1;
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+			if (arr[mid] <= key) {
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
+		}
+		// if start < end condition is in while
+		// take end as n as max insert position can be n.
+		// then if arr[mid] > key, still the insert position can be mid
+		// so we keep end = mid to discard right half while keeping mid
+		// fails for end = n - 1 where key to placed is at end
+		// so use end = n and return left
+//		int end = arr.length;
+//		while (start < end) {
+//			int mid = start + (end - start) / 2;
+//			if (arr[mid] <= key) {
+//				start = mid + 1;
+//			} else {
+//				end = mid;
+//			}
+//		}
+		return start;
+	}
+
+	// arr m > target end = mid - 1
+	// arr m == target end = mid - 1
+	// arr m < target start = mid + 1
+	// 1 3 5 | 0 2 1 | 2
+	// 0 0 0 | 1 0 1
+	// start increased at end due to < logic where start becomes mid + 1.
 	// Finding the lower bound - leftmost position
 	// Here, left is the insert position and left - 1 is the largest element which
 	// is not smaller than the key.
@@ -77,59 +145,26 @@ public class BinarySearchIterative {
 		return start;
 	}
 
-	// Finding the upper bound - rightmost position
-	// Here if arr[mid] < target then insert position is on mid's right
-	// so we discard the left half of mid and also mid by start = mid + 1
-	// Also, if arr[mid] == target still the insert position is on mid's right
-	// so we discard the left half of mid by start = mid + 1
-	// Here, left is the insert position and left - 1 is the largest element which
-	// is not larger than the key.
-	// check for nums[left/left - 1] == target for confirmation
-	private static int binarySearchUpper(int[] arr, int length, int key) {
+	// Insert position
+	// a sorted array of distinct integers and a target value, return the index if
+	// the target is found. If not, return the index where it would be if it were
+	// inserted in order.
+	// If the constraint - nums contains distinct values sorted in ascending order.
+	// is given then lower bound binary search algorithm works as well.
+	private static int binarySearchInsertPosition(int[] arr, int length, int key) {
 		int start = 0;
 		int end = arr.length - 1;
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
-			if (arr[mid] <= key) {
+			if (arr[mid] == key) {
+				return mid;
+			} else if (arr[mid] < key) {
 				start = mid + 1;
 			} else {
 				end = mid - 1;
 			}
 		}
-		// if start < end condition is in while
-		// take end as n as max insert position can be n.
-		// then if arr[mid] > key, still the insert position can be mid
-		// so we keep end = mid to discard right half while keeping mid
-		// fails for end = n - 1 where key to placed is at end
-		// so use end = n and return left
-//		int end = arr.length;
-//		while (start < end) {
-//			int mid = start + (end - start) / 2;
-//			if (arr[mid] <= key) {
-//				start = mid + 1;
-//			} else {
-//				end = mid;
-//			}
-//		}
 		return start;
-	}
-
-	// Find the exact value
-	public static int binarySearchExact(int arr[], int n, int key) {
-		int index = -1;
-		int low = 0, high = n - 1;
-		while (low <= high) {
-			// Pivot point
-			int mid = low + (high - low) / 2;
-			if (key == arr[mid]) {
-				return mid;
-			} else if (key < arr[mid]) {
-				high = mid - 1;
-			} else {
-				low = mid + 1;
-			}
-		}
-		return index;
 	}
 
 }
