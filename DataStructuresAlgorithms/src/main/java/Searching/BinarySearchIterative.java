@@ -2,9 +2,18 @@ package Searching;
 
 import java.util.Arrays;
 
-//Time complexity is log(n) via tree tracing
+// Time complexity is log(n) via tree tracing
 // minimum time or best case is O(1) and maximum time or worst case is O(logn)
 // average time is O(logn) and can be found by Sum of all searches/total cases
+// Time complexity :
+// By Master's theorem
+// T(n) = a*T(n/b) + theta(N^d)
+// It means we divide the problems into a subproblems of size N/b in theta(N^d) time.
+// Here at each step there is only 1 subproblem so a = 1, it's size is half the initial 
+// problem so b = 2, this happens in constant time so d = 0.
+// log b (a) = 0 = d
+// So it's case 2 of master's theorem
+// T(n) = O(n ^ (log b (a)) log N ^ (d + 1)) = O(log n)
 public class BinarySearchIterative {
 
 	public static void main(String[] args) {
@@ -50,6 +59,7 @@ public class BinarySearchIterative {
 		int low = 0, high = n - 1;
 		while (low <= high) {
 			// Pivot point
+			// In java we don't have arbitrary precision integers so use below for mid
 			int mid = low + (high - low) / 2;
 			if (key == arr[mid]) {
 				return mid;
@@ -151,6 +161,8 @@ public class BinarySearchIterative {
 	// inserted in order.
 	// If the constraint - nums contains distinct values sorted in ascending order.
 	// is given then lower bound binary search algorithm works as well.
+	// If the target value is not found then condition start > end
+	// Also arr[end] < target < arr[start] so return start to insert the key.
 	private static int binarySearchInsertPosition(int[] arr, int length, int key) {
 		int start = 0;
 		int end = arr.length - 1;
