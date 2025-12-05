@@ -17,7 +17,8 @@ import java.util.Arrays;
 public class BinarySearchIterative {
 
 	public static void main(String[] args) {
-		int[] arr = { 3, 3, 6, 8, 12, 14, 17, 25, 29, 31, 36, 36, 36, 42, 47, 53, 55, 62, 62 };
+//		int[] arr = { 3, 3, 6, 6, 8, 12, 14, 17, 25, 29, 31, 36, 36, 36, 42, 47, 53, 55, 62, 62 };
+		int[] arr = { 1 };
 
 		int key = 62;
 
@@ -26,18 +27,22 @@ public class BinarySearchIterative {
 		System.out.println();
 
 //		key = 36;// 12
-//		key = 62;//19
-		key = 3;// 2
+//		key = 62;// 19
+//		key = 1;// 0
+//		key = 3;// 2
 //		key = 4;// 2
+//		key = 6;// 2
 		int indexUpper = binarySearchUpper(arr, arr.length, key);
 		System.out.printf("Upper BS: index for key %d is %d", key, indexUpper);
 		System.out.println();
 
-//		key = 3;// 0
+		key = 1;// 0
 //		key = 2;// 0
-		key = 4;// 2
-//		key = 62;// 0
-//		key = 63;// 0
+//		key = 3;// 0
+//		key = 4;// 2
+//		key = 6;// 2
+//		key = 62;// 17
+//		key = 63;// 19
 		int indexLower = binarySearchLower(arr, arr.length, key);
 		System.out.printf("Lower BS: index for key %d is %d", key, indexLower);
 		System.out.println();
