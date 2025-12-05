@@ -2,13 +2,23 @@ package Searching;
 
 import java.util.Arrays;
 
-//Time complexity is log(n) via tree tracing
+// Time complexity is log(n) via tree tracing
 // minimum time or best case is O(1) and maximum time or worst case is O(logn)
 // average time is O(logn) and can be found by Sum of all searches/total cases
+// Time complexity :
+// By Master's theorem
+// T(n) = a*T(n/b) + theta(N^d)
+// It means we divide the problems into a subproblems of size N/b in theta(N^d) time.
+// Here at each step there is only 1 subproblem so a = 1, it's size is half the initial 
+// problem so b = 2, this happens in constant time so d = 0.
+// log b (a) = 0 = d
+// So it's case 2 of master's theorem
+// T(n) = O(n ^ (log b (a)) log N ^ (d + 1)) = O(log n)
 public class BinarySearchIterative {
 
 	public static void main(String[] args) {
-		int[] arr = { 3, 3, 6, 8, 12, 14, 17, 25, 29, 31, 36, 36, 36, 42, 47, 53, 55, 62, 62 };
+//		int[] arr = { 3, 3, 6, 6, 8, 12, 14, 17, 25, 29, 31, 36, 36, 36, 42, 47, 53, 55, 62, 62 };
+		int[] arr = { 1 };
 
 		int key = 62;
 
@@ -17,18 +27,22 @@ public class BinarySearchIterative {
 		System.out.println();
 
 //		key = 36;// 12
-//		key = 62;//19
-		key = 3;// 2
+//		key = 62;// 19
+//		key = 1;// 0
+//		key = 3;// 2
 //		key = 4;// 2
+//		key = 6;// 2
 		int indexUpper = binarySearchUpper(arr, arr.length, key);
 		System.out.printf("Upper BS: index for key %d is %d", key, indexUpper);
 		System.out.println();
 
-//		key = 3;// 0
+		key = 1;// 0
 //		key = 2;// 0
-		key = 4;// 2
-//		key = 62;// 0
-//		key = 63;// 0
+//		key = 3;// 0
+//		key = 4;// 2
+//		key = 6;// 2
+//		key = 62;// 17
+//		key = 63;// 19
 		int indexLower = binarySearchLower(arr, arr.length, key);
 		System.out.printf("Lower BS: index for key %d is %d", key, indexLower);
 		System.out.println();
@@ -50,6 +64,7 @@ public class BinarySearchIterative {
 		int low = 0, high = n - 1;
 		while (low <= high) {
 			// Pivot point
+			// In java we don't have arbitrary precision integers so use below for mid
 			int mid = low + (high - low) / 2;
 			if (key == arr[mid]) {
 				return mid;
@@ -70,6 +85,13 @@ public class BinarySearchIterative {
 	// Here, left is the insert position and left - 1 is the largest element which
 	// is not larger than the key.
 	// check for nums[left/left - 1] == target for confirmation
+	// Here, answer would be in range [left, right] at any point. All the indices
+	// smaller than left would contain values smaller than target and all values at
+	// indices greater than right would be greater than target until left <= right
+	// Once left > right, left denotes the index of the smallest value which is just
+	// greater than the target. This is because all values at indices greater than
+	// right would be greater than target and value immediately next to index right
+	// is at left(right + 1) after completion of Binary search algorithm.
 	private static int binarySearchUpper(int[] arr, int length, int key) {
 		int start = 0;
 		int end = arr.length - 1;
@@ -151,6 +173,8 @@ public class BinarySearchIterative {
 	// inserted in order.
 	// If the constraint - nums contains distinct values sorted in ascending order.
 	// is given then lower bound binary search algorithm works as well.
+	// If the target value is not found then condition start > end
+	// Also arr[end] < target < arr[start] so return start to insert the key.
 	private static int binarySearchInsertPosition(int[] arr, int length, int key) {
 		int start = 0;
 		int end = arr.length - 1;
